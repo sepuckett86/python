@@ -1,4 +1,5 @@
 #Pig Latin Translator
+#Susan Puckett
 #Go from Pig Latin to regular English words
 '''This code takes into accout these Pig Latin concepts from Wikipedia:
   1) "For words that begin with consonant sounds, all letters before the initial vowel are placed at the end of the word sequence. 
@@ -55,5 +56,4 @@ elif minus_ay[-2:] in clusters_two:
 elif minus_ay[-3:] in clusters_three:
   print("The English word is:  " + minus_ay[-3:] + minus_ay[:-3])
 else:
-  print("The English word is: " + minus_ay)
-
+  print("The English word is: " + minus_ay + " or " + minus_ay[-1] + minus_ay[:-1])
