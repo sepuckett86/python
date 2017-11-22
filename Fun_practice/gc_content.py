@@ -3,7 +3,7 @@
 #Sept. 25, 2017
 #Determines the percentage of a DNA sequence that is G or C vs. A or T
 
-DNA = input("Enter DNA here:")
+DNA = input("Enter DNA here: ")
 bases = ["g","c","a","t"]
 
 DNA = DNA.lower()
@@ -11,7 +11,7 @@ DNA = DNA.lower()
 for character in DNA:
   if character not in bases:
     print("Sequence is not all DNA. Try again.")
-    quit()
+    break
 
 base_count_list = [] 
 for base in bases:
