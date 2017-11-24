@@ -12,7 +12,7 @@ def show_time(function, arg, arg2):
     start = time.time()
     out = function(arg, arg2)
     end = time.time()
-    print("Time elapsed: %f" %(end - start) + " sec")
+    print("\tTime elapsed: %f" %(end - start) + " sec")
     return(end - start, out)
     
 # Make mult table
@@ -42,8 +42,8 @@ def multiply_low(x, y):
         if item[0] == x and item[1] == y:
             return int(item[2])
             
-   
 # Function for multiplication of any two integers
+# Old-school method
 def multiply(x, y):
     # Make x the biggest number
     if y > x:
@@ -75,17 +75,31 @@ def multiply(x, y):
         move_over = move_over + "0"
         final_ans += int(ans)
     return final_ans
+
+# Function that is methodical but easy to write
+def mult_easy(x, y):
+    total = 0
+    for i in range(y):
+        total += x
+    return total
+
+# Function that is Python's standard multiplication using * character
+def mult_cheat(x, y):
+    return x*y
             
 # Enter integers to multiply
 number1 = int(input("Enter first integer: "))
 number2 = int(input("Enter second integer: "))
 print("\b")
-print("Multiplying the following: {0} and {1}".format(number1,number2))
+print("Old-school method")
 c, b = show_time(multiply, number1, number2)
 a = (number1*number2)
-print("Answer: {0}".format(b))
-if a == b:
-    print("Value identical to calculator! Looks good.")
-else:
-    print("Value not identical. Error.")
-
+print("\tAnswer: {0}".format(b))
+print("\b")
+print("Using methodical easy method")
+easy_a, easy_b = show_time(mult_easy, number1, number2)
+print("\tAnswer: {0}".format(easy_b))
+print("\b")
+print("Using built-in * calculator")
+built_a, built_b = show_time(mult_cheat, number1, number2)
+print("\tAnswer: {0}".format(built_b))
