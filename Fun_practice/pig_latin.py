@@ -1,7 +1,7 @@
 #Pig Latin Translator
 #Susan Puckett
 #Go from Pig Latin to regular English words
-'''This code takes into accout these Pig Latin concepts from Wikipedia:
+'''This code takes into account these Pig Latin concepts from Wikipedia:
   1) "For words that begin with consonant sounds, all letters before the initial vowel are placed at the end of the word sequence. 
      Then,"ay"  is added..." 
   2) "For words that begin with vowel sounds, one just adds "way" or "yay" to the end (or just "ay")."
