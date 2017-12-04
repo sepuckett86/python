@@ -79,6 +79,10 @@ def multiply(x, y):
 # Function that is methodical but easy to write
 def mult_easy(x, y):
     total = 0
+    if y > x:
+        store = x
+        x = y
+        y = store
     for i in range(y):
         total += x
     return total
@@ -95,10 +99,7 @@ print("Old-school method")
 c, b = show_time(multiply, number1, number2)
 a = (number1*number2)
 print("\tAnswer: {0}".format(b))
-print("\b")
-print("Using methodical easy method")
-easy_a, easy_b = show_time(mult_easy, number1, number2)
-print("\tAnswer: {0}".format(easy_b))
+
 print("\b")
 print("Using built-in * calculator")
 built_a, built_b = show_time(mult_cheat, number1, number2)
