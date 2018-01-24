@@ -282,4 +282,69 @@ def profile(Text, k, matrix_dict):
 
 text, k, matrix = input_profile("test.txt")
 
-
+def greedy(Dna, k, t):
+    """
+    Dna is a list of t (integer) strings, each of some arbitrary length > k (integer)
+    Concept: 1) test all kmers in first string for k-mer with the lowest profile score.
+             2) identify indices of all the best matches to this kmer, one per string
+             3) return a list of these kmers.
+    Input example:
+    3 5
+    GGCGTTCAGGCA
+    AAGAATCAGTCA
+    CAAGGAGTTCGC
+    CACGTCAATCAC
+    CAATAATATTCG
+    Output example:
+    CAG
+    CAG
+    CAA
+    CAA
+    CAA
+    """
+    sc_list = []
+    kmer_list = []
+    for i in range(len(Dna[0])-k+1):
+        kmer = Dna[0][i:i+k]
+        sc = score(Dna,kmer)
+        sc_list.append(sc)
+        kmer_list.append(kmer)
+    print(sc_list)
+    minimum = min(sc_list)
+    indices_min = [i for i, x in enumerate(sc_list) if x == minimum]
+    best_kmer = kmer_list[indices_min[0]]
+    
+    # Edit score function to fit our purposes
+    # Store best kmers, 1 per string, here:
+    best_kmer_list = [best_kmer]
+    
+    for dna_string in Dna[1:]:
+        # For each string, find where best_kmer matches the best. If there is more than one place,
+        # return the first one.
+        # as possible. 
+        # Have x be the output of match function, starting as False
+        x = False
+        # Best match would be when d==0
+        d = 0
+        
+        while x == False and d <= len(kmer):
+            
+            # Iterate over entire single Dna string
+            for i in range(len(dna_string)-len(kmer)+1):
+            
+                string1 = dna_string[i:i+len(kmer)]
+                
+                string2 = kmer
+                
+                x = match(string1,string2,d)
+                # Stop as soon as best match is found
+                if x == True:
+                    best_kmer_list.append(dna_string[i:i+len(kmer)])
+                    break
+           
+            d += 1
+    return best_kmer_list
+        
+    
+dna_list = ['GGCGTTCAGGCA', 'AAGAATCAGTCA', 'CAAGGAGTTCGC', 'CACGTCAATCAC', 'CAATAATATTCG']
+print(greedy(dna_list, 3, 5))
